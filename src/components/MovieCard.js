@@ -58,7 +58,7 @@ const MovieCard = ({ img, title, genre, releaseDate, imgAlt, url, movieId, overv
     } 
 
     return (
-        <Card onMouseOver={() => setShowIcon(true)} onMouseLeave={() => setShowIcon(false)}>
+        <Card onClick={() => console.log('Clicking the card')} onMouseOver={() => setShowIcon(true)} onMouseLeave={() => setShowIcon(false)}>
             <CardImg src={img} alt={imgAlt} />
             {
                 showIcon
