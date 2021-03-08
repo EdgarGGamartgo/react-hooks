@@ -8,7 +8,7 @@ import {
     Input
 } from './../styles'
 import PropTypes from 'prop-types';
-import { Modal, ModalContent } from './../components';
+import { Modal, ModalContent, MovieDetails } from './../components';
 
 const Header = ({ className }) =>  {
 
@@ -37,7 +37,8 @@ const Header = ({ className }) =>  {
 
         return (
             <div className={className}>
-                    <Paragraph>netflixroulette</Paragraph>
+                    <MovieDetails/>
+                    {/* <Paragraph>netflixroulette</Paragraph>
                     <Button onClick={toggleModal}>+ ADD MOVIE</Button>
                     <ThemeProvider theme={ParagraphTitle}>
                         <Paragraph>FIND YOUR MOVIE</Paragraph>
@@ -55,7 +56,7 @@ const Header = ({ className }) =>  {
                                 />
                             </Modal>
                         ) : null
-                    }
+                    } */}
             </div>
         )
     
