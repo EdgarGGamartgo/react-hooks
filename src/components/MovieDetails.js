@@ -12,15 +12,14 @@ import {
     HeaderSearchIcon,
 } from './../styles'
 import PropTypes from 'prop-types';
-//import { fetchMovieRequest } from '../redux'
 import { connect } from 'react-redux'
 
 
-const MovieDetails = ({ img, title, rating, genre, releaseDate, runtime, overview }) => {
+const MovieDetails = ({ img, title, rating, genre, releaseDate, runtime, overview, showSearch }) => {
     return (
         <>
             <Paragraph>netflixroulette</Paragraph>
-            <HeaderSearchIcon color='#F65261' size="30"/>
+            <HeaderSearchIcon color='#F65261' size="30" onClick={showSearch} />
             <DetailsContainer>
                 <ImgDetailsContainer><ImgDetails src={img} alt="details" /></ImgDetailsContainer>
                 <ParDetailsContainer>
@@ -29,7 +28,6 @@ const MovieDetails = ({ img, title, rating, genre, releaseDate, runtime, overvie
                     <DetailsSubTitle><DetailsSpan>{releaseDate}</DetailsSpan>&nbsp;&nbsp;&nbsp;<DetailsSpan>{runtime}</DetailsSpan></DetailsSubTitle>
                     <DetailsSubTitle>
                     {overview}<br/> 
-                    {/* Max number of characters 79 */}
                     </DetailsSubTitle>
                 </ParDetailsContainer>
             </DetailsContainer>
@@ -42,12 +40,6 @@ const mapStateToProps = state => {
         ...state.movie
     }
 }
-
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         buyCake: () => dispatch(buyCake())
-//     }
-// }
 
 MovieDetails.propTypes = {
     img: PropTypes.string.isRequired,

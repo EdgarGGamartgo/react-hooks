@@ -1,6 +1,6 @@
 import React from 'react'
 import { CardsContainer } from './../styles'
-import { MovieCard } from './MovieCard'
+import MovieCard  from './MovieCard'
 import { MovieGallery } from './../__mocks__'
 
 export const CardGallery = () => {

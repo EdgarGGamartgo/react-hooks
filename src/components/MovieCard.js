@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import {
     Card,
     CardImg,
@@ -11,8 +11,10 @@ import {
 import PropTypes from 'prop-types';
 import { DotsVerticalRounded } from '@styled-icons/boxicons-regular'
 import { Modal, ModalContent } from './../components';
+import { connect } from 'react-redux'
+import { fetchMovieRequest } from './../redux'
 
-const MovieCard = ({ img, title, genre, releaseDate, imgAlt, url, movieId, overview, runtime }) => {
+const MovieCard = ({ img, title, genre, releaseDate, rating, imgAlt, url, movieId, overview, runtime, fetchMovie }) => {
 
     const [showModal, setShowModal] = useState(false)
     const [showIcon, setShowIcon] = useState(false)
@@ -55,10 +57,26 @@ const MovieCard = ({ img, title, genre, releaseDate, imgAlt, url, movieId, overv
         console.log(modalData)
         console.log(new Date(2000,4,3).toISOString().split('T')[0])
 
-    } 
+    }
+
+    const showDetails = useCallback(
+        () => {
+            fetchMovie({
+                title,
+                genre,
+                releaseDate,
+                img,
+                overview,
+                runtime,
+                rating,
+                show: true
+            })
+        },
+        [img, fetchMovie, title, genre, releaseDate, rating, overview, runtime]
+    )
 
     return (
-        <Card onClick={() => console.log('Clicking the card')} onMouseOver={() => setShowIcon(true)} onMouseLeave={() => setShowIcon(false)}>
+        <Card onClick={showDetails} onMouseOver={() => setShowIcon(true)} onMouseLeave={() => setShowIcon(false)}>
             <CardImg src={img} alt={imgAlt} />
             {
                 showIcon
@@ -113,5 +131,10 @@ MovieCard.defaultProps = {
     url: 'NO URL'
 };
 
-export { MovieCard }
+const mapDispatchToProps = dispatch => {
+    return {
+       fetchMovie: (show) => dispatch(fetchMovieRequest(show))
+    }
+}
 
+export default connect(null, mapDispatchToProps)(MovieCard)

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { 
     ParagraphTitle,
@@ -10,8 +10,10 @@ import {
 import PropTypes from 'prop-types';
 import { Modal, ModalContent } from './../components';
 import MovieDetails from './../components/MovieDetails'
+import { connect } from 'react-redux'
+import { fetchMovieRequest } from './../redux'
 
-const Header = ({ className }) =>  {
+const Header = ({ className, showMovieDetails, fetchMovie }) =>  {
 
     const [showModal, setShowModal] = useState(false)
     const [modalData, setModalData] = useState({
@@ -36,35 +38,65 @@ const Header = ({ className }) =>  {
         }))
     }
 
+    useEffect(() => {
+        fetchMovie({
+            show: false
+        })
+    }, [fetchMovie])
+
+    const showSearch = useCallback(
+        () => {
+            fetchMovie({
+                show: false
+            })
+        },
+        [fetchMovie]
+    )
+
         return (
             <div className={className}>
-                    <MovieDetails/>
-                    {/* <Paragraph>netflixroulette</Paragraph>
-                    <Button onClick={toggleModal}>+ ADD MOVIE</Button>
-                    <ThemeProvider theme={ParagraphTitle}>
-                        <Paragraph>FIND YOUR MOVIE</Paragraph>
-                    </ThemeProvider>
-                    <Input placeholder="What do you want to watch?"/>
-                    <ButtonSearch>SEARCH</ButtonSearch>
-                    {
-                        showModal ? (
-                            <Modal>
-                                <ModalContent
-                                    modalData={modalData}
-                                    handleInput={handleInput}
-                                    modalType="ADD"
-                                    toggleModal={toggleModal}
-                                />
-                            </Modal>
-                        ) : null
-                    } */}
+                {
+                    showMovieDetails 
+                    ? <MovieDetails showSearch={showSearch}/>
+                    : <><Paragraph>netflixroulette</Paragraph>
+                        <Button onClick={toggleModal}>+ ADD MOVIE</Button>
+                        <ThemeProvider theme={ParagraphTitle}>
+                            <Paragraph>FIND YOUR MOVIE</Paragraph>
+                        </ThemeProvider>
+                        <Input placeholder="What do you want to watch?"/>
+                        <ButtonSearch>SEARCH</ButtonSearch>
+                        {
+                            showModal ? (
+                                <Modal>
+                                    <ModalContent
+                                        modalData={modalData}
+                                        handleInput={handleInput}
+                                        modalType="ADD"
+                                        toggleModal={toggleModal}
+                                    />
+                                </Modal>
+                            ) : null
+                        }</>
+                }
             </div>
         )
     
+}
+
+const mapStateToProps = state => {
+    return {
+        showMovieDetails: state.movie.show
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+       fetchMovie: (show) => dispatch(fetchMovieRequest(show))
+    }
 }
 
 Header.propTypes = {
     className: PropTypes.string.isRequired,
 }
 
-export  { Header }
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

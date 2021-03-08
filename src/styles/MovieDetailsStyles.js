@@ -59,4 +59,7 @@ export const HeaderSearchIcon = styled(Search)`
         transform: rotate(100deg); 
         float: right;
         marginRight: 25px;
+        &:hover {
+            cursor: pointer;
+        }
 `;

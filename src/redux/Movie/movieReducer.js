@@ -11,7 +11,8 @@ const initialState = {
         imgAlt: 'Movie Img',
         url: 'www.someurl.com',
         overview: 'Pulp fiction is a 1994 Americam crime film...',
-        runtime: '154 min'
+        runtime: '154 min',
+        show: false
 }
 
 const reducer = (state = initialState, action) => {
