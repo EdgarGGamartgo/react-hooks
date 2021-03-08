@@ -8,7 +8,8 @@ import {
     Input
 } from './../styles'
 import PropTypes from 'prop-types';
-import { Modal, ModalContent, MovieDetails } from './../components';
+import { Modal, ModalContent } from './../components';
+import MovieDetails from './../components/MovieDetails'
 
 const Header = ({ className }) =>  {
 

@@ -12,10 +12,11 @@ import {
     HeaderSearchIcon,
 } from './../styles'
 import PropTypes from 'prop-types';
+//import { fetchMovieRequest } from '../redux'
+import { connect } from 'react-redux'
 
 
-
-const MovieDetails = ({ img, title, rating, genre, releaseDate, duration, desc }) => {
+const MovieDetails = ({ img, title, rating, genre, releaseDate, runtime, overview }) => {
     return (
         <>
             <Paragraph>netflixroulette</Paragraph>
@@ -25,9 +26,9 @@ const MovieDetails = ({ img, title, rating, genre, releaseDate, duration, desc }
                 <ParDetailsContainer>
                     <DetailsTitle>{title}<CircleWithText>{rating}</CircleWithText></DetailsTitle>
                     <DetailsSubTitle>{genre}</DetailsSubTitle>
-                    <DetailsSubTitle><DetailsSpan>{releaseDate}</DetailsSpan>&nbsp;&nbsp;&nbsp;<DetailsSpan>{duration}</DetailsSpan></DetailsSubTitle>
+                    <DetailsSubTitle><DetailsSpan>{releaseDate}</DetailsSpan>&nbsp;&nbsp;&nbsp;<DetailsSpan>{runtime}</DetailsSpan></DetailsSubTitle>
                     <DetailsSubTitle>
-                    {desc}<br/> 
+                    {overview}<br/> 
                     {/* Max number of characters 79 */}
                     </DetailsSubTitle>
                 </ParDetailsContainer>
@@ -36,14 +37,26 @@ const MovieDetails = ({ img, title, rating, genre, releaseDate, duration, desc }
     )
 }
 
+const mapStateToProps = state => {
+    return {
+        ...state.movie
+    }
+}
+
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         buyCake: () => dispatch(buyCake())
+//     }
+// }
+
 MovieDetails.propTypes = {
     img: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     rating: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     releaseDate: PropTypes.string.isRequired,
-    duration: PropTypes.string.isRequired,
-    desc: PropTypes.string.isRequired,
+    runtime: PropTypes.string.isRequired,
+    overview: PropTypes.string.isRequired,
 }
 
 MovieDetails.defaultProps = {
@@ -52,8 +65,8 @@ MovieDetails.defaultProps = {
     rating: '4.3',
     genre: 'Oscar winning Movie',
     releaseDate: '1994',
-    duration: '154 min',
-    desc: 'A description...'
+    runtime: '154 min',
+    overview: 'A description...'
 };
 
-export  { MovieDetails }
+export default connect(mapStateToProps)(MovieDetails)

@@ -8,7 +8,8 @@ export const MovieGallery = [
         imgAlt: 'Movie Img',
         url: 'www.someurl.com',
         overview: 'overview1',
-        runtime: 'runtime1'
+        runtime: '154 min',
+        rating: '4.3'
     },
     {
         id: 2,
@@ -19,7 +20,8 @@ export const MovieGallery = [
         imgAlt: 'Movie Img',
         url: 'www.someurl.com',
         overview: 'overview1',
-        runtime: 'runtime1'
+        runtime: '154 min',
+        rating: '4.3'
     },
     {
         id: 3,
@@ -30,7 +32,9 @@ export const MovieGallery = [
         imgAlt: 'Movie Img',
         url: 'www.someurl.com',
         overview: 'overview1',
-        runtime: 'runtime1'
+        runtime: '154 min',
+        rating: '4.3'
+
     },
     {
         id: 4,
@@ -41,7 +45,9 @@ export const MovieGallery = [
         imgAlt: 'Movie Img',
         url: 'www.someurl.com',
         overview: 'overview1',
-        runtime: 'runtime1'
+        runtime: '154 min',
+        rating: '4.3'
+
     },
     {
         id: 5,
@@ -52,7 +58,9 @@ export const MovieGallery = [
         imgAlt: 'Movie Img',
         url: 'www.someurl.com',
         overview: 'overview1',
-        runtime: 'runtime1'
+        runtime: '154 min',
+        rating: '4.3'
+
     },
     {
         id: 6,
@@ -63,6 +71,8 @@ export const MovieGallery = [
         imgAlt: 'Movie Img',
         url: 'www.someurl.com',
         overview: 'overview1',
-        runtime: 'runtime1'
+        runtime: '154 min',
+        rating: '4.3'
+
     },
 ]
